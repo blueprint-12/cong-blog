@@ -6,8 +6,9 @@
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint": "next lint --cache --ext ts,tsx --max-warnings 0",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --cache --write ."
   },
   "dependencies": {
     "@types/node": "20.5.2",
