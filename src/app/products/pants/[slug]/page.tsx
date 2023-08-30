@@ -1,19 +1,24 @@
 import React from "react";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
+import { typesOfPants } from "@/app/shared/const";
 
 type Props = {
   params: {
     slug: string;
   };
 };
-const typesOfPants = [
-  "sexy",
-  "gentle",
-  "unique",
-  "whatever",
-  "dark",
-  "sunshine",
-];
+
+export function generateMetadata({ params }: Props): Metadata {
+  if (!typesOfPants.includes(params.slug)) {
+    return {
+      title: `Pants | no search result😢 `,
+    };
+  }
+  return {
+    title: `Pants | ${params.slug}`,
+  };
+}
 
 export default function PantsDetailPage({ params }: Props) {
   if (!typesOfPants.includes(params.slug)) {
