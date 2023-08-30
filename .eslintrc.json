@@ -1,6 +1,4 @@
 {
   "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
-  "rules": {
-    "prettier/prettier": "error"
-  }
+  "rules": { "prettier/prettier": "warn" } //기본값 error인데 눈따가워서 warn으로 수정
 }
