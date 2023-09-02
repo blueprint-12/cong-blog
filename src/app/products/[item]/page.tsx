@@ -1,23 +1,35 @@
 import { Metadata } from "next";
 import React from "react";
 import { typesOfItem } from "@/app/shared/const";
+import { getProduct } from "@/service/products";
+import { notFound } from "next/navigation";
 type Props = {
   params: {
     item: string;
   };
 };
 
-// ? 동적인 메타 데이터를 만들 떄, 내부에서 비동기 작업을 하지 않는다면 비동기함수(async 키워드)로 만들어 줄 필요없음
-export function generateMetadata({ params }: Props): Metadata {
+export function generateMetadata({ params: { item } }: Props): Metadata {
   return {
-    title: `제품의 이름: ${params.item}`,
+    title: `제품의 이름: ${item}`,
   };
 }
 
-export default function ProductItemDetailPage({ params }: Props) {
-  return <div>{params.item} DetailPage</div>;
+export default async function ProductItemDetailPage({
+  params: { item },
+}: Props) {
+  const product = await getProduct(item);
+
+  if (!product) {
+    notFound();
+  }
+
+  //서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아서 그걸 보여준다.
+  return <div>{product.name} DetailPage</div>;
 }
 
-export function generateStaticParams() {
+// 모든 제품의 디테일 페이지를 미리 만들어둠(SSG)
+//? generateStaticParams도 비동기 함수처리 가능
+export async function generateStaticParams() {
   return typesOfItem.map((itemName) => ({ item: itemName }));
 }
