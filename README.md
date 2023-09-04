@@ -18,5 +18,6 @@ yarn start #port 3000(default)
 
 ### vscode 확장 프로그램
 
-1. CSS module
-   > react프로젝트 + TS 지원, recommendation에 넣어놨음
+**1️⃣ CSS module**
+
+> react프로젝트 + TS 지원, recommendation에 넣어놨음
