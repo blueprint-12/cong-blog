@@ -1,13 +1,17 @@
 import React from "react";
-import { typesOfItem } from "../shared/const";
 import Link from "next/link";
 import { getProducts } from "@/service/products";
+import styles from "./page.module.css";
 
-export const revalidate = 3;
+// export const revalidate = 3;
 
 export default async function ProductsPage() {
-  //서버 파일(DB)에 있는 제품의 리스트를 읽어와서, 그걸 보여준다.
   const products = await getProducts();
+  const res = await fetch("https://meowfacts.herokuapp.com", {
+    next: { revalidate: 0 },
+  });
+  const data = await res.json();
+  const factText = data.data[0];
   return (
     <div>
       <h2>Products</h2>
@@ -18,6 +22,7 @@ export default async function ProductsPage() {
           </li>
         ))}
       </ul>
+      <article className={styles.article}>{factText}</article>
     </div>
   );
 }
