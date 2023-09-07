@@ -2,7 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { getProducts } from "@/service/products";
 import MeowArticle from "@/components/MeowArticle";
-
+import Image from "next/image";
+import clothesImage from "public/images/clothes.jpg";
 // export const revalidate = 3;
 
 export default async function ProductsPage() {
@@ -11,6 +12,7 @@ export default async function ProductsPage() {
   return (
     <div>
       <h2>Products</h2>
+      <Image src={clothesImage} alt="Clothes" />
       <ul>
         {products.map(({ id, name }, index) => (
           <li key={index} style={{ listStyle: "none" }}>
