@@ -2,8 +2,9 @@ import { Metadata } from "next";
 import React from "react";
 import { typesOfItem } from "@/app/shared/const";
 import { getProduct } from "@/service/products";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
+import GoProductsBtn from "@/components/GoProductsBtn";
 type Props = {
   params: {
     item: string;
@@ -24,19 +25,20 @@ export default async function ProductItemDetailPage({
   const product = await getProduct(item);
 
   if (!product) {
-    notFound();
+    redirect("/products");
   }
 
-  //서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아서 그걸 보여준다.
   return (
     <>
       <div>{product.name} DetailPage</div>
       <Image
+        priority={true}
         src={`/images/${product.imageUrl}`}
         alt={product.name}
         width={300}
         height={300}
       />
+      <GoProductsBtn />
     </>
   );
 }
