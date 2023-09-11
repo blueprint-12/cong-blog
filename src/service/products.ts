@@ -5,6 +5,7 @@ export type Product = {
   id: string;
   name: string;
   price: number;
+  imageUrl: string;
 };
 // ? fs가 promise라 비동기함수로 만들어줘야 한다.
 export async function getProducts(): Promise<Product[]> {

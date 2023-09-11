@@ -3,6 +3,7 @@ import React from "react";
 import { typesOfItem } from "@/app/shared/const";
 import { getProduct } from "@/service/products";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 type Props = {
   params: {
     item: string;
@@ -27,7 +28,17 @@ export default async function ProductItemDetailPage({
   }
 
   //서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아서 그걸 보여준다.
-  return <div>{product.name} DetailPage</div>;
+  return (
+    <>
+      <div>{product.name} DetailPage</div>
+      <Image
+        src={`/images/${product.imageUrl}`}
+        alt={product.name}
+        width={300}
+        height={300}
+      />
+    </>
+  );
 }
 
 // 모든 제품의 디테일 페이지를 미리 만들어둠(SSG)
