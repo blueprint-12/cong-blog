@@ -26,16 +26,15 @@ const nextConfig = {
     ];
   },
   async rewrites() {
-    return [
-      {
-        source: "/about",
-        destination: "/",
-      },
-      {
-        source: "/items/:slug",
-        destination: "/products/:slug",
-      },
-    ];
+    return {
+      beforeFiles: [{ source: "/about", destination: "/" }],
+      fallback: [
+        {
+          source: "/items/:slug",
+          destination: "/products/:slug",
+        },
+      ],
+    };
   },
 };
 
