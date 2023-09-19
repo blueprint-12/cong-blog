@@ -1,6 +1,5 @@
 import Link from "next/link";
 import "./globals.css";
-import styles from "./layout.module.css";
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 
@@ -28,17 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={roboto_mono.className}>
-      <body className={roboto_mono.className}>
-        <header className={styles.header}>
-          <h1>Demo Note</h1>
-          <nav className={styles.nav}>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
-            <Link href="/products">Product</Link>
-          </nav>
-        </header>
-        {children}
-      </body>
+      <body className={roboto_mono.className}>{children}</body>
     </html>
   );
 }
