@@ -1,14 +1,8 @@
-import Link from "next/link";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Roboto_Mono } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 
-// ? next 폰트 사용법
-// variable font를 제공하는 경우에는 weight를 지정하지 않아도 된다.
-// 전체에 className을 줘도되고 부분 별로 className을 줘도 된다.
-// page 컴포넌트보다는 최상위인 layout에 font를 적용하는 게 좋다.
-
-export const roboto_mono = Roboto_Mono({
+export const open_sans = Open_Sans({
   subsets: ["latin"],
 });
 
@@ -26,8 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={roboto_mono.className}>
-      <body className={roboto_mono.className}>{children}</body>
+    <html lang="en" className={open_sans.className}>
+      <body className="">
+        <header className=""></header>
+        {children}
+        <footer className=""></footer>
+      </body>
     </html>
   );
 }
